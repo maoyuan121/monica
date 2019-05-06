@@ -1,32 +1,25 @@
-# Installing Monica on Docker
+# 将Monica安装到Docker上
 
-You can use [Docker](https://www.docker.com) and
-[docker-compose](https://docs.docker.com/compose/) to pull or build
-and run a Monica image, complete with a self-contained MySQL database.
-This has the nice properties that you don't have to install lots of
-software directly onto your system, and you can be up and running
-quickly with a known working environment.
+可以使用 [Docker](https://www.docker.com) 和
+[docker-compose](https://docs.docker.com/compose/) pull 或 build 来运行一个 Monica image。
 
-Before you start, you need to get and edit a `.env` file. If you've already
-cloned the [Monica Git repo](https://github.com/monicahq/monica), run:
+开始前，你需要获得并编辑一个`.env` 文件。如果你已经克隆了 [Monica Git repo](https://github.com/monicahq/monica)，那么直接运行：
 
 ```sh
 cp .env.example .env
 ```
 
-to create it. If not, you can fetch it from GitHub like:
+创建 .env。如果没有克隆，可以用下面的命令从 github 上创建一个 .env：
 
 ```sh
 curl -sS https://raw.githubusercontent.com/monicahq/monica/master/.env.example > .env
 ```
 
-Then open `.env` in an editor and update it for your own needs:
+打开 `.env` 根据需要修改下面的配置：
 
-- Set `APP_KEY` to a random 32-character string. For example, if you
-  have the `pwgen` utility installed, you could copy and paste the
-  output of `pwgen -s 32 1`.
-- Edit the `MAIL_*` settings to point to your own mailserver.
-- Set `DB_*` settings to point to your database configuration. If you don't want to set a db prefix, be careful to set `DB_PREFIX=` and not `DB_PREFIX=''` as docker will not expand this as an empty string.
+- 将 `APP_KEY` 设为一个随机的32位字符的字符串。例如，如果你已经安装了 `pwgen`，可以复制粘贴 `pwgen -s 32 1` 的输出。
+- 根据你的mailserver编辑 `MAIL_*`
+- 编辑 `DB_*`指向你的数据库。如果你不想设置 db prefix，那么设置 `DB_PREFIX=` 而不是 `DB_PREFIX=''`，因为 docker 不会解析空字符串。
 
 Note for macOS: you will need to stop Apache if you wish to have Monica available on port 80.
 
@@ -42,9 +35,9 @@ To start Apache up again use this command:
 sudo /usr/sbin/apachectl start
 ```
 
-Now select one of these methods to be up and running quickly:
+现在使用下面的方法快速运行：
 
-#### Use docker-compose to run a pre-built image
+#### 使用 docker-compose 运行一个 pre-built image
 
 This is the easiest and fastest way to try Monica! Use this process
 if you want to download the newest image from Docker Hub and run it
